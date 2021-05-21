@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "mutter:lib"
+
+    - path: "./app/Main.hs"
+      component: "mutter:exe:mutter-exe"
+
+    - path: "./app/Paths_mutter.hs"
+      component: "mutter:exe:mutter-exe"
+
+    - path: "./test"
+      component: "mutter:test:mutter-test"

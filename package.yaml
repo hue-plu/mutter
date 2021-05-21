@@ -1,0 +1,47 @@
+name:                mutter
+version:             0.1.0.0
+github:              "hue-plu/mutter"
+license:             MIT
+author:              "hue-plu"
+maintainer:          "shuetwitter@gmail.com"
+copyright:           "2021 hue-plu"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/hue-plu/mutter#readme>
+
+dependencies:
+- base
+- bytestring
+- extra
+- morpheus-graphql
+- regex-tdfa        >=1.3.1.0
+- scotty
+- text
+
+library:
+  source-dirs: src
+
+executables:
+  mutter-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - mutter
+
+tests:
+  mutter-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - mutter
