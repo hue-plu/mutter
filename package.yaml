@@ -34,6 +34,14 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - mutter
+  study-exe:
+    main:                Main.hs
+    source-dirs:         study
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies: []
 
 tests:
   mutter-test:

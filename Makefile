@@ -1,4 +1,7 @@
-build:
+run-mutter:
 	stack run mutter-exe
 
-.PHONY: build
+run-study:
+	stack run study-exe
+
+.PHONY: run-mutter
