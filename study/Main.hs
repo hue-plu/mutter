@@ -2,8 +2,12 @@ module Main where
 
 import           MyFirstModule
 
-main :: IO ()
-main = do
-  input <- getLine
-  let repeated = replicate 3 input
-  print repeated
+
+putQStrLn = do
+  str <- getLine
+  putChar '"'
+  putStr str
+  putChar '"'
+  putChar '\n'
+
+main = putQStrLn

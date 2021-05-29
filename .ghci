@@ -1,0 +1,5 @@
+:set -XNamedFieldPuns
+
+import Control.Monad.Extra
+
+:load app/Main
