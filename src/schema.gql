@@ -1,18 +1,18 @@
-type Book {
+type Murmur {
   id: Int!
-  title: String!
-  author: Author!
+  text: String!
+  user: User!
 }
 
-type Author {
+type User {
   id: Int!
   name: String!
-  books: [Book!]!
+  murmurs: [Murmur!]!
 }
 
 type Query {
-  author(name: String! = ".*"): Author
-  book(title: String! = ".*"): Book
-  authors: [Author!]!
-  books: [Book!]!
+  user(name: String! = ".*"): User
+  murmur(text: String! = ".*"): Murmur
+  users: [User!]!
+  murmurs: [Murmur!]!
 }

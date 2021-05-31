@@ -22,108 +22,65 @@ import           Web.Scotty
 
 importGQLDocumentWithNamespace "src/schema.gql"
 
--- * Library
+-- * Users
 
-library :: Monad m => [Author m]
-library = [Author
-      { authorId = pure 1,
-        authorName = pure "Robert Louis Stevenson",
-        authorBooks = pure [treasure, jekyll]
-      }, kant, michael]
+users :: Monad m => [User m]
+users = [taro, jiro]
 
-books :: Monad m => [Book m]
-books = [treasure, jekyll, reason, neverending, momo]
-
--- * Authors
-
-robert :: Monad m => Author m
-robert =
-  Author
-    { authorId = pure 1
-    , authorName = pure "Robert Louis Stevenson"
-    , authorBooks = pure [treasure, jekyll]
+taro :: Monad m => User m
+taro =
+  User
+    { userId = pure 2,
+      userName = pure "tanaka taro",
+      userMurmurs = pure []
     }
 
-kant :: Monad m => Author m
-kant =
-  Author
-    { authorId = pure 2,
-      authorName = pure "Immanuel Kant",
-      authorBooks = pure [reason]
-    }
-
-michael :: Monad m => Author m
-michael =
-  Author
-    { authorId = pure 3,
-      authorName = pure "Michael Ende",
-      authorBooks = pure [neverending, momo]
-    }
-
--- * Books
-
-treasure :: Monad m => Book m
-treasure =
-  Book
-    { bookId = pure 1,
-      bookTitle = pure "Treasure Island",
-      bookAuthor = pure robert
-    }
-
-jekyll :: Monad m => Book m
-jekyll =
-  Book
-    { bookId = pure 2,
-      bookTitle = pure "The Strange Case of Dr Jekyll and Mr Hyde",
-      bookAuthor = pure robert
-    }
-
-reason :: Monad m => Book m
-reason =
-  Book
-    { bookId = pure 3,
-      bookTitle = pure "Critique of Pure Reason",
-      bookAuthor = pure kant
-    }
-
-neverending :: Monad m => Book m
-neverending =
-  Book
-    { bookId = pure 4,
-      bookTitle = pure "The Neverending Story",
-      bookAuthor = pure michael
-    }
-
-momo :: Monad m => Book m
-momo =
-  Book
-    { bookId = pure 5,
-      bookTitle = pure "Momo",
-      bookAuthor = pure michael
+jiro :: Monad m => User m
+jiro =
+  User
+    { userId = pure 3,
+      userName = pure "tanaka jiro",
+      userMurmurs = pure []
     }
 
 -- * GraphQL Resolvers
+
+-- * MurMurs
+murmurs :: Monad m => [Murmur m]
+murmurs =
+  [ Murmur
+      { murmurId = pure 1
+      , murmurText = pure "There are murmurs of discontent everywhere."
+      , murmurUser = pure taro
+      }
+  , Murmur
+      { murmurId = pure 2
+      , murmurText = pure "The brook murmurs over the pebbles."
+      , murmurUser = pure taro
+      }
+  ]
+
 
 rootResolver :: RootResolver IO () Query Undefined Undefined
 rootResolver =
   RootResolver
     { queryResolver =
         Query
-          { queryAuthor,
-            queryAuthors,
-            queryBook,
-            queryBooks
+          { queryMurmur,
+            queryMurmurs,
+            queryUser,
+            queryUsers
           },
       mutationResolver = Undefined,
       subscriptionResolver = Undefined
     }
   where
-    queryAuthor QueryAuthorArgs {queryAuthorArgsName} =
-      findM (\Author {authorName} -> (=~ queryAuthorArgsName) <$> authorName) library
-    queryAuthors = pure library
-    queryBook QueryBookArgs {queryBookArgsTitle} =
-      findM (\Book {bookTitle} -> (=~ queryBookArgsTitle) <$> bookTitle) books
-    queryBooks = pure books
+    queryUser QueryUserArgs {queryUserArgsName} =
+      findM (\User {userName} -> (=~ queryUserArgsName) <$> userName) users
+    queryUsers = pure users
+    queryMurmur QueryMurmurArgs {queryMurmurArgsText} =
+      findM (\Murmur {murmurText} -> (=~ queryMurmurArgsText) <$> murmurText) murmurs
+    queryMurmurs = pure murmurs
 
 api :: B.ByteString -> IO B.ByteString
 api = interpreter rootResolver
