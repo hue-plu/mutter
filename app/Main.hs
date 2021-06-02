@@ -86,4 +86,6 @@ api :: B.ByteString -> IO B.ByteString
 api = interpreter rootResolver
 
 main :: IO ()
-main = scotty 8080 $ post "/graphql" $ raw =<< (liftIO . api =<< body)
+main = scotty 8080 $ do
+  post "/graphql" $ raw =<< (liftIO . api =<< body)
+  get "/graphql" $ file "./static/graphql_playground.html"
