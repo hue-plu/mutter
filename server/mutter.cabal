@@ -13,7 +13,6 @@ author:         hue-plu
 maintainer:     shuetwitter@gmail.com
 copyright:      2021 hue-plu
 license:        MIT
-license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
