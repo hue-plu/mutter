@@ -1,25 +1,25 @@
 cradle:
-  cabal:
-    - path: "src"
-      component: "lib:mutter"
+  stack:
+    - path: "./src"
+      component: "mutter:lib"
 
-    - path: "app/Main.hs"
+    - path: "./app/Main.hs"
       component: "mutter:exe:mutter-exe"
 
-    - path: "app/Paths_mutter.hs"
+    - path: "./app/Paths_mutter.hs"
       component: "mutter:exe:mutter-exe"
 
-    - path: "study/Main.hs"
+    - path: "./study/Main.hs"
       component: "mutter:exe:study-exe"
 
-    - path: "study/DataTypes.hs"
+    - path: "./study/DataTypes.hs"
       component: "mutter:exe:study-exe"
 
-    - path: "study/MyFirstModule.hs"
+    - path: "./study/MyFirstModule.hs"
       component: "mutter:exe:study-exe"
 
-    - path: "study/Paths_mutter.hs"
+    - path: "./study/Paths_mutter.hs"
       component: "mutter:exe:study-exe"
 
-    - path: "test"
+    - path: "./test"
       component: "mutter:test:mutter-test"
