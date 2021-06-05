@@ -6,3 +6,5 @@ resolver: nightly-2021-05-20
 packages:
 - .
 
+extra-deps:
+  - postgresql-simple-url-0.2.1.0

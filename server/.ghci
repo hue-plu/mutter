@@ -1,4 +1,7 @@
 :set -XNamedFieldPuns
+:set -XOverloadedStrings
+:set -XFlexibleContexts
+:set -XScopedTypeVariables
 
 import Control.Monad.Extra
 

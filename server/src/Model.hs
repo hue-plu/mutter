@@ -23,6 +23,7 @@ import           Web.Scotty
 -- FIXME: should define Model/User Entity type
 import           GraphQL
 
+-- * Users
 users :: Monad m => [User m]
 users = [taro, jiro]
 
@@ -41,8 +42,6 @@ jiro =
       userName = pure "tanaka jiro",
       userMurmurs = pure []
     }
-
--- * GraphQL Resolvers
 
 -- * MurMurs
 murmurs :: Monad m => [Murmur m]
