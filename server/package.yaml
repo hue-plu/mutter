@@ -12,14 +12,47 @@ extra-source-files:
 
 description:         Please see the README on GitHub at <https://github.com/hue-plu/mutter#readme>
 
+default-extensions:
+  - OverloadedStrings
+  - DeriveGeneric
+  - GADTs
+  - Arrows
+  - OverloadedStrings
+  - FlexibleContexts
+  - FlexibleInstances
+  - TypeFamilies
+  - TypeApplications
+  - StandaloneDeriving
+  - TypeSynonymInstances
+  - MultiParamTypeClasses
+  - GeneralizedNewtypeDeriving
+  - TemplateHaskell
+  - QuasiQuotes
+  - ScopedTypeVariables
+  - DuplicateRecordFields
+  - RankNTypes
+  - LambdaCase
+  - NamedFieldPuns
+
 dependencies:
 - base
 - bytestring
+- mtl
 - extra
 - morpheus-graphql
+- morpheus-graphql-core
 - regex-tdfa        >=1.3.1.0
 - scotty
 - text
+- opaleye
+- product-profunctors
+- postgresql-simple
+- postgresql-simple-url
+- time
+- transformers
+- transformers-base
+- monad-control
+
 
 library:
   source-dirs: src

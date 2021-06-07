@@ -18,6 +18,9 @@ cradle:
     - path: "study/MyFirstModule.hs"
       component: "mutter:exe:study-exe"
 
+    - path: "study/ReaderT.hs"
+      component: "mutter:exe:study-exe"
+
     - path: "study/Paths_mutter.hs"
       component: "mutter:exe:study-exe"
 
