@@ -27,6 +27,8 @@ library
       GraphQL
       GraphQL.Resolvers
       Model
+      Model.Murmurs
+      Model.Users
       ModelFromDB
   other-modules:
       Paths_mutter

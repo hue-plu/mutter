@@ -11,8 +11,6 @@ type User {
 }
 
 type Query {
-  user(name: String! = ".*"): User
-  murmur(text: String! = ".*"): Murmur
   users: [User!]!
   murmurs: [Murmur!]!
 }

@@ -51,37 +51,7 @@ import           Data.Morpheus.Types             (ComposedResolver, QUERY,
 import           Data.Maybe
 import qualified GraphQL                         as GQL
 
-data UserT a b
-  = User
-    { userId   :: a,
-      userName :: b
-    }
-
-type User = UserT Int Text
-type UserField = UserT (Field SqlInt4) (Field SqlText)
-
-$(makeAdaptorAndInstance "pUser" ''UserT)
-
-usersTable :: Table UserField UserField
-usersTable = table "users" (pUser User { userId = tableField "id"
-                                       , userName = tableField "name"
-                                       })
-
-usersSelect :: Select UserField
-usersSelect = selectTable usersTable
-
-userResolver :: User -> ResolverQ () GQL.Web GQL.User
-userResolver User {userId, userName} =
-  return GQL.User
-    { GQL.userId = pure userId,
-      GQL.userName = pure userName,
-      GQL.userMurmurs = pure []
-    }
-
-users :: ComposedResolver QUERY () GQL.Web [] GQL.User
-users = do
-  users :: [User] <- runSelectWithConn usersSelect
-  traverse userResolver users
+-- Core Functions --
 
 runSelectWithConn ::
   Default FromFields fields haskells =>
@@ -91,7 +61,7 @@ runSelectWithConn select = do
   conn <- lift ask
   liftIO $ Opaleye.runSelect conn select
 
--- Debug ---------------
+-- Debug --
 
 printSql :: Default Unpackspec a a => Select a -> IO ()
 printSql = putStrLn . fromMaybe "Empty select" . showSql
